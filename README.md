@@ -24,6 +24,19 @@ The next steps are obviously to provision it with Fabric, then log in:
     fab vagrant provision
     vagrant ssh
 
+### Glassfish support
+
+The box can be provisioned with [Glassfish](http://glassfish.org/):
+
+    fab vagrant provision_glassfish
+
+Glassfish is installed in `~/glassfish3` with the following configuration:
+
+- admin user: `admin`
+- admin password: `adminadmin`
+- access to the HTTP interface from the host on port `18080`
+- access to the HTTP admin console from the host on port `14848`
+
 ## License
 
 Copyright (C) 2013 Julien Ponge.
