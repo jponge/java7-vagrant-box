@@ -14,3 +14,9 @@ def provision():
         'git',
         'vim'
         ], update=True)
+    deb.upgrade()
+
+@task
+def provision_glassfish():
+    require.file('glassfish.zip', url='http://download.java.net/glassfish/3.1.2.2/release/glassfish-3.1.2.2.zip')
+    run('unzip -o glassfish.zip')
