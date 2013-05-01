@@ -20,3 +20,9 @@ def provision():
 def provision_glassfish():
     require.file('glassfish.zip', url='http://download.java.net/glassfish/3.1.2.2/release/glassfish-3.1.2.2.zip')
     run('unzip -o glassfish.zip')
+    run('echo "AS_ADMIN_PASSWORD=" > /tmp/password.txt')
+    run('echo "AS_ADMIN_NEWPASSWORD=adminadmin" >> /tmp/password.txt')
+    run('glassfish3/bin/asadmin --user admin --passwordfile /tmp/password.txt change-admin-password --domain_name domain1')
+    run('echo "AS_ADMIN_PASSWORD=adminadmin" > /tmp/password.txt')
+    run('glassfish3/bin/asadmin start-domain && glassfish3/bin/asadmin --passwordfile /tmp/password.txt --host localhost --port 4848 enable-secure-admin && glassfish3/bin/asadmin stop-domain')
+    run('rm /tmp/password.txt')
